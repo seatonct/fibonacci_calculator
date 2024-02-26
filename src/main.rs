@@ -1,3 +1,45 @@
+use std::io;
+
 fn main() {
-    println!("Hello, world!");
+    loop {
+        println!("Enter a number and hit 'Enter' to calculate the number at that position in the Fibonacci series:");
+    
+        let mut num = String::new();
+    
+        io::stdin()
+            .read_line(&mut num)
+            .expect("Failed to read line");
+    
+        let num: i32 = match num.trim().parse() {
+            Ok(dig) => dig,
+            Err(_) => continue,
+        };
+    
+        let fib = fib_calc(num);
+    
+        println!("Fibonacci number # {num} is {fib}.")
+    }
+}
+
+fn fib_calc(num: i32) -> i32 {
+    if num == 1 {
+        1
+    } else if num == 2 {
+        2
+    } else if num == 3 {
+        3
+    }
+    else {
+        let mut fib1: i32;
+        let mut fib2: i32 = 3;
+        let mut fib3: i32 = 5;
+        let mut counter = 4;
+        while counter < num {
+            fib1 = fib2;
+            fib2 = fib3;
+            fib3 = fib1 + fib2;
+            counter = counter + 1;
+        }
+        return fib3
+    }
 }
