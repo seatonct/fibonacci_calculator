@@ -2,7 +2,7 @@ use std::io;
 
 fn main() {
     loop {
-        println!("Enter a number and hit 'Enter' to calculate the number at that position in the Fibonacci series:");
+        println!("Enter a number greater than 0 and hit 'Enter' \nto calculate the number at that position \nin the Fibonacci series:");
     
         let mut num = String::new();
     
@@ -11,7 +11,12 @@ fn main() {
             .expect("Failed to read line");
     
         let num: i32 = match num.trim().parse() {
-            Ok(dig) => dig,
+            Ok(dig) => {
+                if dig < 1 {
+                    println!("Please enter a number greater than 0.");
+                    continue;
+                }
+                else {dig}},
             Err(_) => continue,
         };
     
